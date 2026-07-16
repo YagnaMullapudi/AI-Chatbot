@@ -1,0 +1,6 @@
+{
+  "name": "Enterprise AI Chatbot Platform",
+  "description": "An enterprise-ready AI chatbot platform featuring multi-agent chats, advanced document search (RAG), mock authentication, analytics dashboards, and prompt management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
