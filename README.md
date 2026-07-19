@@ -1,20 +1,190 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+---
 
-# Run and deploy your AI Studio app
+# 🏛 Enterprise System Architecture
 
-This contains everything you need to run your app locally.
+```text
+                                    ┌────────────────────────────┐
+                                    │         End Users          │
+                                    │  Web Browser / Mobile App  │
+                                    └─────────────┬──────────────┘
+                                                  │
+                                           HTTPS / SSL
+                                                  │
+                                                  ▼
+                         ┌────────────────────────────────────┐
+                         │     React + TypeScript Frontend    │
+                         │------------------------------------│
+                         │ • Authentication UI                │
+                         │ • AI Chat Interface                │
+                         │ • Dashboard                        │
+                         │ • Document Upload                  │
+                         │ • Analytics                        │
+                         │ • Admin Panel                      │
+                         └──────────────┬─────────────────────┘
+                                        │
+                                  REST API / WebSocket
+                                        │
+                                        ▼
+                     ┌──────────────────────────────────────────┐
+                     │      Java Spring Boot Backend            │
+                     │------------------------------------------│
+                     │ Spring Security                          │
+                     │ JWT Authentication                       │
+                     │ User Management                          │
+                     │ Chat Service                             │
+                     │ Document Service                         │
+                     │ AI Integration Service                   │
+                     │ Notification Service                     │
+                     │ Admin Service                            │
+                     └──────────────┬───────────────────────────┘
+                                    │
+      ┌─────────────────────────────┼──────────────────────────────┐
+      │                             │                              │
+      ▼                             ▼                              ▼
+┌──────────────┐           ┌────────────────┐             ┌────────────────┐
+│ PostgreSQL   │           │ Redis Cache   │             │ Gemini AI API  │
+│--------------│           │---------------│             │----------------│
+│ Users        │           │ Session Cache │             │ AI Responses   │
+│ Chats        │           │ JWT Cache     │             │ Context        │
+│ Messages     │           │ Chat Cache    │             │ Embeddings     │
+│ Documents    │           │ Rate Limits   │             │ Text Generation│
+│ Analytics    │           └────────────────┘             └────────────────┘
+└──────────────┘
+                │
+                ▼
+     ┌───────────────────────────┐
+     │      File Storage          │
+     │----------------------------│
+     │ PDF Documents              │
+     │ Images                     │
+     │ DOCX Files                 │
+     │ CSV Files                  │
+     └───────────────────────────┘
+                │
+                ▼
+      ┌────────────────────────────┐
+      │      Docker Containers     │
+      │----------------------------│
+      │ React Frontend             │
+      │ Spring Boot Backend        │
+      │ PostgreSQL                 │
+      │ Redis                      │
+      │ Nginx Reverse Proxy        │
+      └──────────────┬─────────────┘
+                     │
+                     ▼
+          ┌─────────────────────────┐
+          │      AWS Cloud          │
+          │-------------------------│
+          │ EC2                     │
+          │ S3                      │
+          │ CloudWatch              │
+          │ GitHub Actions CI/CD    │
+          └─────────────────────────┘
+```
 
-View your app in AI Studio: https://ai.studio/apps/4c48ca20-6a83-48a8-b9b8-eec607c69854
+---
 
-## Run Locally
+# 🏗 Architecture Layers
 
-**Prerequisites:**  Node.js
+## 1. Presentation Layer
+- React
+- TypeScript
+- Tailwind CSS
+- Material UI
+- Responsive Design
+- Dark/Light Theme
 
+---
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 2. API Layer
+- REST APIs
+- WebSocket
+- JWT Authentication
+- Input Validation
+- Global Exception Handling
+
+---
+
+## 3. Business Layer
+- User Management
+- AI Chat Service
+- Document Processing
+- Analytics Service
+- Notification Service
+- Admin Management
+
+---
+
+## 4. AI Layer
+- Google Gemini API
+- LangChain
+- Retrieval-Augmented Generation (RAG)
+- Prompt Engineering
+- Conversation Memory
+- Semantic Search
+
+---
+
+## 5. Data Layer
+- PostgreSQL
+- Redis Cache
+- File Storage
+- Vector Embeddings
+
+---
+
+## 6. DevOps Layer
+- Docker
+- Docker Compose
+- GitHub Actions
+- AWS EC2
+- Nginx
+- SSL/HTTPS
+
+---
+
+# 🔄 Application Workflow
+
+```text
+User
+   │
+   ▼
+React Frontend
+   │
+JWT Authentication
+   │
+Spring Boot REST API
+   │
+Business Logic
+   │
+───────────────
+│ PostgreSQL │
+│ Redis      │
+│ Gemini AI  │
+───────────────
+   │
+AI Response
+   │
+Spring Boot
+   │
+React Frontend
+   │
+User
+```
+
+---
+
+# 📐 Design Patterns Used
+
+- MVC Architecture
+- Layered Architecture
+- Repository Pattern
+- Service Layer Pattern
+- DTO Pattern
+- Builder Pattern
+- Factory Pattern
+- Singleton Pattern
+- Dependency Injection
+- Strategy Pattern
+- Observer Pattern
