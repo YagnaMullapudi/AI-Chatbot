@@ -1,90 +1,40 @@
----
-
-# 🏛 Enterprise System Architecture
+## 🏛 Enterprise System Architecture
 
 ```text
-                                    ┌────────────────────────────┐
-                                    │         End Users          │
-                                    │  Web Browser / Mobile App  │
-                                    └─────────────┬──────────────┘
-                                                  │
-                                           HTTPS / SSL
-                                                  │
-                                                  ▼
-                         ┌────────────────────────────────────┐
-                         │     React + TypeScript Frontend    │
-                         │------------------------------------│
-                         │ • Authentication UI                │
-                         │ • AI Chat Interface                │
-                         │ • Dashboard                        │
-                         │ • Document Upload                  │
-                         │ • Analytics                        │
-                         │ • Admin Panel                      │
-                         └──────────────┬─────────────────────┘
-                                        │
-                                  REST API / WebSocket
-                                        │
-                                        ▼
-                     ┌──────────────────────────────────────────┐
-                     │      Java Spring Boot Backend            │
-                     │------------------------------------------│
-                     │ Spring Security                          │
-                     │ JWT Authentication                       │
-                     │ User Management                          │
-                     │ Chat Service                             │
-                     │ Document Service                         │
-                     │ AI Integration Service                   │
-                     │ Notification Service                     │
-                     │ Admin Service                            │
-                     └──────────────┬───────────────────────────┘
-                                    │
-      ┌─────────────────────────────┼──────────────────────────────┐
-      │                             │                              │
-      ▼                             ▼                              ▼
-┌──────────────┐           ┌────────────────┐             ┌────────────────┐
-│ PostgreSQL   │           │ Redis Cache   │             │ Gemini AI API  │
-│--------------│           │---------------│             │----------------│
-│ Users        │           │ Session Cache │             │ AI Responses   │
-│ Chats        │           │ JWT Cache     │             │ Context        │
-│ Messages     │           │ Chat Cache    │             │ Embeddings     │
-│ Documents    │           │ Rate Limits   │             │ Text Generation│
-│ Analytics    │           └────────────────┘             └────────────────┘
-└──────────────┘
-                │
-                ▼
-     ┌───────────────────────────┐
-     │      File Storage          │
-     │----------------------------│
-     │ PDF Documents              │
-     │ Images                     │
-     │ DOCX Files                 │
-     │ CSV Files                  │
-     └───────────────────────────┘
-                │
-                ▼
-      ┌────────────────────────────┐
-      │      Docker Containers     │
-      │----------------------------│
-      │ React Frontend             │
-      │ Spring Boot Backend        │
-      │ PostgreSQL                 │
-      │ Redis                      │
-      │ Nginx Reverse Proxy        │
-      └──────────────┬─────────────┘
+                    End Users
+              Web Browser / Mobile App
+                       │
+                  HTTPS / SSL
+                       │
+                       ▼
+      ┌────────────────────────────────┐
+      │ React + TypeScript Frontend    │
+      │ • Authentication               │
+      │ • AI Chat                      │
+      │ • Dashboard                    │
+      └──────────────┬─────────────────┘
+                     │
+             REST API / WebSocket
                      │
                      ▼
-          ┌─────────────────────────┐
-          │      AWS Cloud          │
-          │-------------------------│
-          │ EC2                     │
-          │ S3                      │
-          │ CloudWatch              │
-          │ GitHub Actions CI/CD    │
-          └─────────────────────────┘
-```
-
----
-
+      ┌────────────────────────────────┐
+      │ Java Spring Boot Backend       │
+      │ • Spring Security              │
+      │ • JWT Authentication           │
+      │ • AI Service                   │
+      │ • Chat Service                 │
+      │ • User Service                 │
+      └──────────────┬─────────────────┘
+                     │
+       ┌─────────────┼───────────────┐
+       │             │               │
+       ▼             ▼               ▼
+┌─────────────┐ ┌─────────────┐ ┌───────────────┐
+│ PostgreSQL  │ │ Redis Cache │ │ Gemini API    │
+└─────────────┘ └─────────────┘ └───────────────┘
+                     │
+                     ▼
+            Docker + AWS EC2
 # 🏗 Architecture Layers
 
 ## 1. Presentation Layer
